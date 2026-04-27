@@ -1,56 +1,60 @@
-"# RentVideo"
+"# RentVideoAdvanced"
 
-Project Structure
+src/main/java/com/example/rentvideo
 
-src/main/java/com/rentvideo/
+│
 
-├── RentVideoApplication.java
+├── controller
 
-├── config/
+│   ├── AuthController.java
 
-│   └── SecurityConfig.java
+│   ├── VideoController.java
 
-├── model/
+│   ├── RentalController.java
+
+│
+
+├── entity
 
 │   ├── User.java
 
 │   ├── Video.java
 
-│   └── Role.java
+│   ├── Rental.java
 
-├── repository/
+│
+
+├── repository
 
 │   ├── UserRepository.java
 
-│   └── VideoRepository.java
+│   ├── VideoRepository.java
 
-├── service/
+│   ├── RentalRepository.java
+
+│
+
+├── security
+
+│   ├── JwtAuthenticationFilter.java
+
+│   ├── JwtService.java
+
+│   ├── SecurityConfig.java
+
+│
+
+├── service
 
 │   ├── UserService.java
 
 │   ├── VideoService.java
 
-│   └── CustomUserDetailsService.java
+│   ├── RentalService.java
 
-├── controller/
+│
 
-│   ├── AuthController.java
+└── RentVideoApplication.java
 
-│   └── VideoController.java
 
-├── dto/
-
-│   ├── UserRegistrationDto.java
-
-│   ├── UserResponseDto.java
-
-│   └── VideoDto.java
-
-└── exception/
-
-&nbsp;   ├── GlobalExceptionHandler.java
-
-&nbsp;   ├── ResourceNotFoundException.java
-
-&nbsp;   └── DuplicateResourceException.java
 

@@ -1,5 +1,6 @@
 package com.project.videorental.Model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -19,7 +20,8 @@ import lombok.NoArgsConstructor;
 public class Video {
     @GeneratedValue
     @Id
-    private String id;
+    @Column(name = "video_id")
+    private Long id;
     private String title;
     private String director;
     private String genre;

@@ -8,5 +8,6 @@ import lombok.Data;
 @Data
 @Builder
 public class AuthReponse {
-    private final String message = "Success";    
+    private final String message = "Success";
+    private String accessToken;    
 }

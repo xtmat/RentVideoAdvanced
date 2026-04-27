@@ -10,10 +10,12 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
 import com.project.videorental.Service.UserService;
 
 @EnableWebSecurity
@@ -24,11 +26,16 @@ public class SecurityConfig {
     @Autowired
     private UserService userService;
 
+    @Autowired 
+    private JWTSecurityFilter jwtSecurityFilter;
+
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
         
         httpSecurity.csrf((csrf)->csrf.disable());
+
+        httpSecurity.sessionManagement(configurer-> configurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
         httpSecurity.authenticationProvider(getAuthenticationProvider());
 
@@ -38,6 +45,8 @@ public class SecurityConfig {
         .authenticated());
 
         httpSecurity.httpBasic(Customizer.withDefaults());
+
+        httpSecurity.addFilterBefore(jwtSecurityFilter, UsernamePasswordAuthenticationFilter.class);
 
         return httpSecurity.build();
     }

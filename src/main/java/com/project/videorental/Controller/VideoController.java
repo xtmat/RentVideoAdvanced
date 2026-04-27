@@ -34,14 +34,14 @@ public class VideoController {
 
     @PutMapping("/update/{id}")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public ResponseEntity<?> updateVideo(@PathVariable String id, @RequestBody VideoDTO request){
+    public ResponseEntity<?> updateVideo(@PathVariable Long id, @RequestBody VideoDTO request){
         Video video = videoService.updateVideo(id, request);
         return ResponseEntity.status(HttpStatus.OK).body(video);
     }
 
     @DeleteMapping("/delete")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public ResponseEntity<?> deleteVideo(@RequestParam String id){
+    public ResponseEntity<?> deleteVideo(@RequestParam Long id){
         videoService.deleteVideo(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
@@ -51,5 +51,13 @@ public class VideoController {
         return ResponseEntity.ok(videoService.listVideos());
     }
 
+    @PostMapping("/{videoId}/rent")
+    public ResponseEntity<?> rentVideo(@PathVariable Long videoId){
+        return ResponseEntity.ok(videoService.rentVideo(videoId));
+    }
 
+    @PostMapping("/{videoId}/return")
+    public ResponseEntity<?> returnVideo(@PathVariable Long videoId){
+        return ResponseEntity.ok(videoService.returnVideo(videoId));
+    }
 }

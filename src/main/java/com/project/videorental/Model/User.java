@@ -3,7 +3,6 @@ package com.project.videorental.Model;
 import java.util.Collection;
 import java.util.List;
 
-import org.hibernate.annotations.ManyToAny;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,9 +12,9 @@ import com.project.videorental.Model.Enums.Role;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinColumns;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
@@ -34,9 +33,9 @@ import lombok.NoArgsConstructor;
 public class User implements UserDetails{
     
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
-    private String id;
+    private Long id;
     private String firstName;
     private String lastName;
     @Column(nullable = false)
